@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Plans - Movie App{% endblock %}
+
+{% block content %}
+<style>
+    .table-container {
+        margin: 70px;
+    }
+</style>
+
+<h1 class="text-center text-secondary">User Management</h1>
+<div class="d-flex justify-content-center"></div>
+<div class="table-container">
+    <table class="table table-bordered table-striped table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>UserName</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for userlist in user_list %}
+            <tr>
+                <td>{{ userlist.id }}</td>
+                <td><a href="{% url 'watch' userlist.id %}" class="text-white">{{ userlist.username }}</a></td>
+                <td>
+                    <button class="btn btn-info"><a class="text-white" href="#">Block</a></button>
+                    <button class="btn btn-info"><a class="text-white" href="#">UnBlock</a></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Plans - Movie App{% endblock %}
+
+{% block content %}
+<style>
+    .table-container {
+        margin: 70px;
+    }
+    .dropdown-container {
+        margin-bottom: 20px;
+    }
+    .custom-select {
+       width: 200px; 
+       height: 40px; 
+       font-size: 16px; 
+    }
+    .dropdown-container .custom-select {
+  margin-right: 10px; 
+}
+
+.dropdown-container .custom-select:last-child {
+  margin-right: 0; 
+}
+
+</style>
+</head>
+<body>
+    <h1 class="text-center text-secondary">Subscribers</h1>
+    <div class="d-flex justify-content-center dropdown-container">
+        <select class="custom-select">
+            <option selected>Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="Apri">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        <select class="custom-select">
+            <option selected>Year</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+    </div>
+    <div class="table-container">
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+                <tr>
+                    <th class="text-center">Subscription Plan</th>
+                    <th class="text-center">Number of Sunbscribers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">Weekly Plan</td>
+                    <td class="text-center">15</td>
+                </tr>
+                <tr>
+                    <td class="text-center">Monthly Plan</td>
+                    <td class="text-center">24</td>
+                </tr>
+                <tr>
+                    <td class="text-center">6Month Plan</td>
+                    <td class="text-center">46</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Update Movie List{% endblock %}
+{% block content %}
+<style>
+    .card-custom {
+        width: 30%;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<div class="card card-custom">
+    <div class="card-header bg-secondary text-dark font-weight-bold justify-content-center d-flex">
+        <h4>Update</h4>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body bg-secondary">
+            <label for="title" class="font-weight-bold">Title:</label>
+            {{ form.title }}
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1" class="font-weight-bold">Description:</label>
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label class="form-label font-weight-bold" for="thumbnail">Update your image:</label>
+                {{ form.thumbnail }}
+            </div>
+            <div class="form-group">
+                <label class="form-label font-weight-bold" for="vedio">Update your video:</label>
+                {{ form.video }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{% url 'movielist' %}" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

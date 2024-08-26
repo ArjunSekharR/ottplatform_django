@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Movie App{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+          body {
+            background-image: url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg');
+            background-size: 100% 100%;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand font-weight-bold" href="#">OTT WATCH</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="{% url 'userlist' %}">UserManagment <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'movielist' %}">Movie Managment</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Report
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'subscibers'%}"> Subscription</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'revenue' %}">Total Revenue</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'viewed_most'%}">Most Viewed</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'rate'%}">Hiighest Rated Movie</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'plans'%}">Subscription Managment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Change Password</a>
+      </li>
+    </ul>
+    <div>
+        <button class="btn btn-primary space"><a class="text-white card-link" href="{% url  'logout' %}">Logout</a></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main>
+        {% block content %}
+      
+        {% endblock %}
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

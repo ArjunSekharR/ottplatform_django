@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}MovieList{% endblock %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .btn-position {
+           margin-left: 0;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-start">
+                <button class="btn btn-primary btn-position">
+                    <a href="{% url 'add' %}" class="text-white card-link">Add</a>
+                </button>
+            </div>
+        </div>
+        <input type="text" id="search" name="search_term" placeholder="Search movies...">
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Movie Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="movie-table-body">
+                {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>
+                        <a href="{% url 'movie_edit' movie.id %}" class="btn btn-secondary">Update</a>
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ movie.id }}">Delete</button>
+                        <a href="{% url 'movie_view' movie.id %}" class="btn btn-primary">View</a>
+                    </td>
+                </tr>
+                <div class="modal fade" id="deleteModal{{ movie.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ movie.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="POST" action="{% url 'delete_movie' movie.id %}">
+                                {% csrf_token %}
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel{{ movie.id }}">Delete</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure to delete {{ movie.title }}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ol class="pagination justify-content-center mt-4">
+                {% if movies.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ movies.previous_page_number }}">Previous</a>
+                </li>
+                {% endif %}
+                {% for num in movies.paginator.page_range %}
+                <li class="page-item {% if movies.number == num %} active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if movies.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ movies.next_page_number }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                let searchTerm = $(this).val();
+                $.ajax({
+                    url: "{% url 'search_movies' %}",
+                    type: 'GET',
+                    data: {
+                        'search_term': searchTerm
+                    },
+                    success: function(data){
+                        $("#movie-table-body").html(data.html);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

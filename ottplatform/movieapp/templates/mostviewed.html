@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Plans - Movie App{% endblock %}
+
+{% block content %}
+<style>
+    .table-container {
+        margin: 70px;
+    }
+    .dropdown-container {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1 class="text-center text-secondary">Most Viewed</h1>
+    <div class="table-container">
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+                <tr>
+                    <th class="text-center">Most Viewed</th>
+                    <th class="text-center">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">Deadpool VS Wolverine</td>
+                    <td class="text-center">15000</td>
+                </tr>
+                <tr>
+                    <td class="text-center">Batman ArkamKnight</td>
+                    <td class="text-center">24000</td>
+                </tr>
+                <tr>
+                    <td class="text-center">Interstellar</td>
+                    <td class="text-center">46000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
